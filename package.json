@@ -1,8 +1,6 @@
 {
-  "name": "angular-lib-template",
-  "description": "An HTML/JS/CSS app",
+  "name": "q-date",
   "version": "0.0.1",
-  "private": true,
   "author": "Adam Albrecht",
   "devDependencies": {
     "gulp": "~3.6.1",

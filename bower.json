@@ -1,6 +1,20 @@
 {
-  "name": "angular-lib-template",
+  "name": "q-date",
   "version": "0.0.1",
+  "author": "Adam Albrecht",
+  "main": [],
+  "ignore": [
+    "vendor/bower",
+    "node_modules",
+    "spec",
+    "src",
+    "vendor",
+    "gulpfile.js",
+    "gulpfile.coffee",
+    "karma.conf.coffee",
+    "package.json",
+    "screenshot.png"
+  ],
   "dependencies": {
     "angular": "~1.2.16"
   },
