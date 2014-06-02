@@ -157,6 +157,25 @@ describe "q-calendar", ->
         it 'switches the month to March', ->
           expect(cal.getTitle()).toEqual("March 2014")
 
+      describe 'And the selected date is changed to July 1 outside the directive', ->
+        beforeEach ->
+          scope.myDate = new Date(2014, 6, 1)
+          scope.$apply()
+
+        it 'switches the calendar to July', ->
+          expect(cal.getTitle()).toEqual("July 2014")
+
+      describe 'And the selected date is changed to null outside the directive', ->
+        beforeEach ->
+          scope.myDate = null
+          scope.$apply()
+
+        it 'removes the selected class from the cell', ->
+          expect($(element).find('.q-calendar-selected').length).toEqual(0)
+
+        it 'does not change the month shown', ->
+          expect(cal.getTitle()).toEqual("April 2014")
+
     describe 'a calendar whose model is set to May 15, 2014', ->
       beforeEach ->
         scope.myDate = new Date(2014, 4, 15)

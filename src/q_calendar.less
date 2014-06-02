@@ -1,4 +1,6 @@
 @border-color: #ccc;
+@other-month-cell-font-color: #aaa;
+@today-cell-font-color: #b58922;
 
 .q-calendar-month {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -40,8 +42,11 @@ table.q-calendar-month {
 }
 
 td.q-calendar-other-month {
-  color: #aaa;
+  color: @other-month-cell-font-color;
 }
 td.q-calendar-selected {
   font-weight: bold;
+}
+td.q-calendar-today {
+  color: @today-cell-font-color;
 }

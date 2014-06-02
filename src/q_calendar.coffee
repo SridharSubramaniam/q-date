@@ -9,10 +9,10 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
         setupParsers()
         setupViewActions()
         scope.translations = qDateDefaults.translations
-        scope.$watch(attrs.ngModel, ->
-          setMonthDate()
-          refreshView()
-        )
+        # scope.$watch(attrs.ngModel, ->
+        #   setMonthDate("watch")
+        #   refreshView()
+        # )
         for key, value of scope.translations
           if typeof value == "string"
             scope.translations[key] = $sce.trustAsHtml(value)
@@ -21,10 +21,10 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
         setupCalendarTable()
 
       modelCtrl.$render = ->
-        setMonthDate()
+        setMonthDate() unless scope.monthDate && !modelCtrl.$viewValue
         refreshView()
 
-      setMonthDate = ->
+      setMonthDate = (calledFrom=null) ->
         scope.monthDate = if modelCtrl && modelCtrl.$viewValue then new Date(modelCtrl.$viewValue) else new Date()
         scope.monthDate.setDate(1)
 
@@ -37,12 +37,6 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
             d = new Date(viewVal)
             if isNaN(viewVal) then d else null
         )
-
-      # setupFormatters = ->
-      #   modelCtrl.$formatters.push((val) ->
-      #     console.log "FORMATTER", val
-      #     val
-      #   )
 
       setupViewActions = ->
         scope.nextMonth = ->
@@ -59,6 +53,8 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
           refreshView()
         scope.setDate = (d) ->
           modelCtrl.$setViewValue(d)
+          if modelCtrl.$viewValue && !qDateUtil.datesAreEqualToMonth(modelCtrl.$viewValue, scope.monthDate)
+            setMonthDate()
           refreshView()
 
       setupCalendarTable = ->
@@ -84,7 +80,6 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
             })
             iDate.setDate(iDate.getDate() + 1)
         scope.weeks = weeks
-        # days: [{date: new Date(), isToday: true}]
 
       init()
 
