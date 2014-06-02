@@ -7,13 +7,24 @@
   <body>
     <div id='container' data-ng-controller='DemoCtrl'>
       <h1 data-ng-bind='myLabel'></h1>
+      <div data-q-calendar data-ng-model='selectedDate'></div>
+      <br>
+      <p>
+        <strong>Date Selected:</strong> {{selectedDate | date:'medium'}}
+      </p>
+      <p>
+        <button ng-click='setToToday()'>Set to Today</button>
+      </p>
     </div>
     <script type="text/javascript" src="vendor/bower/angular/angular.js"></script>
     <script type="text/javascript" src="dist/src.js"></script>
     <script type='text/javascript'>
-      var app = angular.module("DemoApp", []);
+      var app = angular.module("DemoApp", ["q-date"]);
       app.controller("DemoCtrl", function($scope) {
-        $scope.myLabel = "Hello, World";
+        $scope.selectedDate = new Date(2014, 3, 1, 17, 30);
+        $scope.setToToday = function() {
+          $scope.selectedDate = new Date();
+        }
       });
     </script>
   </body>

@@ -18,6 +18,8 @@ module.exports = (config) ->
       "vendor/bower/jquery/jquery.js"
       "vendor/bower/angular/angular.js"
       "vendor/bower/angular-mocks/angular-mocks.js"
+      "vendor/browserTrigger.js"
+      "src/q_date_init.coffee"
       "src/**/*.coffee"
       "spec/**/*.coffee"
     ]

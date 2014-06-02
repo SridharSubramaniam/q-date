@@ -11,7 +11,7 @@ ngmin = require("gulp-ngmin")
 less = require('gulp-less')
 
 gulp.task "scripts", ->
-  compiled = gulp.src("src/**/*.{coffee,js}")
+  compiled = gulp.src(["src/q_date_init.coffee", "src/**/*.{coffee,js}"])
     .pipe(gulpif(/[.]coffee$/,
       coffee({bare:true})
       .on('error', gutil.log)
