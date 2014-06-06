@@ -22,6 +22,7 @@ gulp.task "scripts", ->
       .on('error', gutil.log)
     ))
     .pipe(ngmin())
+
   compiled
     .pipe(concat("qdate.js"))
     .pipe(gulp.dest("dist"))

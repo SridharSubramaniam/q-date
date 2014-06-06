@@ -1,7 +1,11 @@
 .q-calendar {
   font-family: $font-family;
+  display: inline-block;
+  padding: 5px;
+  border: $calendar-border;
 
   &-title {
+    display: inline-block;
     font-size: $title-font-size;
   }
   &-next-month, &-next-year, &-prev-month, &-prev-year {

@@ -1,0 +1,37 @@
+@import "default_colors";
+
+// Custom Variables
+$bootstrap-blue: #428bca;
+$medium-border-color: #ddd;
+$title-font-size: 1.0em;
+$cell-border-color: #fff;
+$calendar-border: solid 1px $medium-border-color;
+$other-month-cell-bg-color: #fff;
+$selected-cell-color: #fff;
+$selected-cell-inner-border-color: $bootstrap-blue;
+
+@import "default_variables";
+@import "calendar";
+
+.q-calendar {
+  border-radius: 5px;
+}
+td.q-calendar-selected {
+  span {
+    border-radius: 5px;
+    background-color: $bootstrap-blue;
+  }
+  &:hover {
+    background-color: #fff;
+    span {
+      border-color: $bootstrap-blue;
+      background-color: darken($bootstrap-blue, 15%);
+    }
+  }
+}
+td.q-calendar-today.q-calendar-selected {
+  color: #fff;
+  &:hover {
+    background-color: #fff;
+  }
+}

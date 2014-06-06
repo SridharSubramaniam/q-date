@@ -1,4 +1,34 @@
-@import "variables/default_colors";
-@import "variables/metro";
-@import "variables/default";
+@import "default_colors";
+
+// Custom Variables
+$metro-blue-text: #2e92cf;
+$metro-blue-bg: #1ba1e2;
+$metro-green: #a0e857;
+$cell-color: $metro-blue-text;
+$cell-border-color: #e6f5fc;
+
+$title-font-size: 0.9em;
+$title-bar-bg-color: $metro-blue-bg;
+$title-bar-text-color: #fff;
+$title-bar-x-padding: 5px;
+$title-bar-y-padding: 7px;
+
+$header-row-font-weight: normal;
+$header-row-color: lighten($primary-text-color, 15%);
+
+$cell-padding: 8px;
+
+$today-cell-bg-color: $metro-green;
+$today-cell-color: $primary-text-color;
+$today-cell-font-weight: normal;
+
+$selected-cell-inner-border-color: $metro-blue-text;
+$selected-cell-color: $metro-blue-text;
+
+@import "default_variables";
+
 @import "calendar";
+
+.q-calendar-title {
+  padding-top: 3px;
+}
