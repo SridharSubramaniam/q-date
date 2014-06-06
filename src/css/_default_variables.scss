@@ -6,14 +6,23 @@ $font-size: inherit !default;
 $light-border-color: $light-gray !default;
 $medium-border-color: $medium-gray !default;
 
-// Calendar Title
-$title-font-size: 1.1em !default;
+// Calendar Title Bar
 $title-bar-bg-color: #fff !default;
 $title-bar-text-color: $primary-text-color !default;
-$title-bar-y-padding: 5px !default;
-$title-bar-x-padding: 0 !default;
+$title-bar-padding: 5px 0px !default;
+
+// Calendar Title
+$title-font-size: 1.1em !default;
+$title-padding: 3px 0 !default;
+
+// Next, Prev Arrow Buttons
 $arrow-font-size: 1.1em !default;
-$arrow-distance-apart: 15px !default;
+$arrow-padding: 3px 7.5px !default;
+$arrow-color: $primary-text-color !default;
+$arrow-border: none !default;
+$arrow-bg-color: none !default;
+$arrow-hover-bg-color: $disabled-bg-color !default;
+$arrow-hover-border: none !default;
 
 // Calendar wrapper
 $calendar-border: none !default;
@@ -28,19 +37,24 @@ $cell-color: $primary-text-color !default;
 $cell-bg-color: #fff !default;
 $cell-padding: 5px !default;
 $cell-border-color: $light-border-color !default;
+$cell-hover-bg-color: darken($cell-bg-color, 10%) !default;
 
 // Selected Date Cell
 $selected-cell-color: $selected-text-color !default;
 $selected-cell-bg-color: $cell-bg-color !default;
 $selected-cell-font-weight: normal !default;
 $selected-cell-inner-border-color: $primary-text-color !default;
+$selected-cell-hover-bg-color: darken($selected-cell-bg-color, 10%) !default;
+$selected-cell-hover-inner-border-color: darken($selected-cell-inner-border-color, 10%) !default;
 
 // Date Cell for next/prev month
 $other-month-cell-color: $disabled-text-color !default;
 $other-month-cell-bg-color: $disabled-bg-color !default;
 $other-month-cell-font-weight: normal !default;
+$other-month-cell-hover-bg-color: darken($other-month-cell-bg-color, 10%) !default;
 
 // Today date cell
 $today-cell-color: $cell-color !default;
 $today-cell-bg-color: $cell-bg-color !default;
 $today-cell-font-weight: bold !default;
+$today-cell-hover-bg-color: darken($today-cell-bg-color, 10%);

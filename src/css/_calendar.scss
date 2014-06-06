@@ -7,17 +7,21 @@
   &-title {
     display: inline-block;
     font-size: $title-font-size;
+    padding: $title-padding;
   }
   &-next-month, &-next-year, &-prev-month, &-prev-year {
     font-size: $arrow-font-size;
+    padding: $arrow-padding;
+    background-color: $arrow-bg-color;
     cursor: pointer;
+    border: $arrow-border;
+    &:hover {
+      background-color: $arrow-hover-bg-color;
+      border: $arrow-hover-border;
+    }
   }
   &-next-month, &-next-year { float:right; }
   &-prev-month, &-prev-year { float:left; }
-  &-prev-year { padding-right: ($arrow-distance-apart / 2); }
-  &-next-year { padding-left: ($arrow-distance-apart / 2); }
-  &-prev-month { padding-left: ($arrow-distance-apart / 2); }
-  &-next-month { padding-right: ($arrow-distance-apart / 2); }
   &-month {
     border-collapse: collapse;
     border-spacing: 0;
@@ -25,7 +29,7 @@
   caption {
     color: $title-bar-text-color;
     background-color: $title-bar-bg-color;
-    padding: $title-bar-y-padding $title-bar-x-padding;
+    padding: $title-bar-padding;
     vertical-align: middle;
   }
   td, th {
@@ -40,13 +44,14 @@
     color: $cell-color;
     background-color: $cell-bg-color;
     span {
+      position: relative;
       display: block;
       padding: $cell-padding;
       border: solid 1px $cell-bg-color;
     }
     &:hover {
-      background-color: darken($cell-bg-color, 10%);
-      span { border-color: darken($cell-bg-color, 10%); }
+      background-color: $cell-hover-bg-color;
+      span { border-color: $cell-hover-bg-color; }
     }
   }
   th {
@@ -66,8 +71,8 @@ td.q-calendar-other-month {
     border: 1px solid $other-month-cell-bg-color;
   }
   &:hover {
-    background-color: darken($other-month-cell-bg-color, 10%);
-    span { border-color: darken($other-month-cell-bg-color, 10%); }
+    background-color: $other-month-cell-hover-bg-color;
+    span { border-color: $other-month-cell-hover-bg-color; }
   }
 }
 td.q-calendar-selected {
@@ -78,8 +83,8 @@ td.q-calendar-selected {
     border: 1px solid $selected-cell-inner-border-color;
   }
   &:hover {
-    background-color: darken($selected-cell-bg-color, 10%);
-    span { border-color: darken($selected-cell-inner-border-color, 10%); }
+    background-color: $selected-cell-hover-bg-color;
+    span { border-color: darken($selected-cell-hover-inner-border-color, 10%); }
   }
 }
 td.q-calendar-today {
@@ -90,8 +95,8 @@ td.q-calendar-today {
     border: 1px solid $today-cell-bg-color;
   }
   &:hover {
-    background-color: darken($today-cell-bg-color, 10%);
-    span { border-color: darken($today-cell-bg-color, 10%); }
+    background-color: $today-cell-hover-bg-color;
+    span { border-color: $today-cell-hover-bg-color; }
   }
   &.q-calendar-selected {
     color: $today-cell-color;

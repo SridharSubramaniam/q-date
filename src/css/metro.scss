@@ -10,11 +10,15 @@ $cell-border-color: #e6f5fc;
 $title-font-size: 0.9em;
 $title-bar-bg-color: $metro-blue-bg;
 $title-bar-text-color: #fff;
-$title-bar-x-padding: 5px;
-$title-bar-y-padding: 7px;
+$title-bar-padding: 5px 3px;
+$title-padding: 7px 0;
 
 $header-row-font-weight: normal;
 $header-row-color: lighten($primary-text-color, 15%);
+
+$arrow-hover-bg-color: $metro-blue-bg;
+$arrow-border: 1px solid $metro-blue-bg;
+$arrow-hover-border: 1px solid $title-bar-text-color;
 
 $cell-padding: 8px;
 
@@ -28,7 +32,3 @@ $selected-cell-color: $metro-blue-text;
 @import "default_variables";
 
 @import "calendar";
-
-.q-calendar-title {
-  padding-top: 3px;
-}

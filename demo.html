@@ -5,7 +5,7 @@
   </head>
   <body>
     <div id='container' data-ng-controller='DemoCtrl'>
-      <link rel="stylesheet" type="text/css" href="dist/qdate-{{theme}}.css" media="all" />
+      <link rel="stylesheet" type="text/css" ng-href="dist/qdate-{{theme}}.css" media="all" />
       <p class='theme-form'>
         <label style='font-weight: bold; font-family:arial;' for='theme'>Theme</label>
         <br>
@@ -30,7 +30,7 @@
     <script type='text/javascript'>
       var app = angular.module("DemoApp", ["q-date"]);
       app.controller("DemoCtrl", function($scope) {
-        $scope.theme = 'basic'
+        $scope.theme = 'metro'
         $scope.selectedDate = new Date(2014, 5, 15, 17, 30);
         $scope.setToToday = function() {
           $scope.selectedDate = new Date();
