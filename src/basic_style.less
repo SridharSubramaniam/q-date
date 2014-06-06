@@ -1,6 +1,8 @@
-@border-color: #ccc;
+@medium-border-color: #ccc;
+@light-border-color: #e6f5fc;
 @other-month-cell-font-color: #aaa;
 @today-cell-font-color: #b58922;
+@selected-bg-color: darken(#fff, 20%);
 
 .q-calendar-month {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -26,15 +28,19 @@
 
 }
 table.q-calendar-month {
+  border-collapse: collapse;
   border-spacing: 0;
-  border-top: 1px solid @border-color;
-  border-left: 1px solid @border-color;
+  border: 1px solid @medium-border-color;
   td, th {
-    padding: 5px;
     margin: 0;
     text-align: center;
-    border-right: 1px solid @border-color;
-    border-bottom: 1px solid @border-color;
+    border: 1px solid @light-border-color;
+    span {
+      border: solid 1px #fff;
+      padding: 5px;
+      display: block;
+      position: relative;
+    }
   }
   td {
     cursor: pointer;
@@ -45,8 +51,8 @@ td.q-calendar-other-month {
   color: @other-month-cell-font-color;
 }
 td.q-calendar-selected {
-  font-weight: bold;
+  background-color: @selected-bg-color;
 }
 td.q-calendar-today {
-  color: @today-cell-font-color;
+  color: blue;
 }

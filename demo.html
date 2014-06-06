@@ -2,11 +2,18 @@
 <html data-ng-app='DemoApp'>
   <head>
     <title>Demo</title>
-    <link rel="stylesheet" type="text/css" href="dist/style.css" media="all" />
   </head>
   <body>
     <div id='container' data-ng-controller='DemoCtrl'>
-      <h1 data-ng-bind='myLabel'></h1>
+      <link rel="stylesheet" type="text/css" href="dist/qdate-{{theme}}.css" media="all" />
+      <p class='theme-form'>
+        <label style='font-weight: bold; font-family:arial;' for='theme'>Theme</label>
+        <br>
+        <select name='theme' ng-model='theme'>
+          <option value='minimal'>Minimal</option>
+          <option value='metro'>Metro</option>
+        </select>
+      </p>
       <div data-q-calendar data-ng-model='selectedDate'></div>
       <br>
       <p>
@@ -18,11 +25,12 @@
       </p>
     </div>
     <script type="text/javascript" src="vendor/bower/angular/angular.js"></script>
-    <script type="text/javascript" src="dist/src.js"></script>
+    <script type="text/javascript" src="dist/qdate.js"></script>
     <script type='text/javascript'>
       var app = angular.module("DemoApp", ["q-date"]);
       app.controller("DemoCtrl", function($scope) {
-        $scope.selectedDate = new Date(2014, 4, 15, 17, 30);
+        $scope.theme = 'metro'
+        $scope.selectedDate = new Date(2014, 5, 15, 17, 30);
         $scope.setToToday = function() {
           $scope.selectedDate = new Date();
         }

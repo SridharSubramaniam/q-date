@@ -87,20 +87,20 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
                 <div class='q-calendar'>
                   <table class='q-calendar-month'>
                     <caption>
-                      <span class='q-calendar-prev-year' data-ng-click='prevYear()' data-ng-bind-html='translations.prevYear'></span>
-                      <span class='q-calendar-prev-month' data-ng-click='prevMonth()' data-ng-bind-html='translations.prevMonth'></span>
+                      <span title='Previous Year' class='q-calendar-prev-year' data-ng-click='prevYear()' data-ng-bind-html='translations.prevYear'></span>
+                      <span title='Previous Month' class='q-calendar-prev-month' data-ng-click='prevMonth()' data-ng-bind-html='translations.prevMonth'></span>
                       <span class='q-calendar-title' ng-bind="monthDate | date:'MMMM yyyy'"></span>
-                      <span class='q-calendar-next-year' data-ng-click='nextYear()' data-ng-bind-html='translations.nextYear'></span>
-                      <span class='q-calendar-next-month' data-ng-click='nextMonth()' data-ng-bind-html='translations.nextMonth'></span>
+                      <span title='Next Year' class='q-calendar-next-year' data-ng-click='nextYear()' data-ng-bind-html='translations.nextYear'></span>
+                      <span title='Next Month' class='q-calendar-next-month' data-ng-click='nextMonth()' data-ng-bind-html='translations.nextMonth'></span>
                     </caption>
                     <thead>
                       <tr>
-                        <th data-ng-repeat='abbr in translations.dayAbbreviations' data-ng-bind='abbr'></th>
+                        <th data-ng-repeat='abbr in translations.dayAbbreviations'><span data-ng-bind='abbr'></span></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr ng-repeat='week in weeks'>
-                        <td ng-repeat='day in week' ng-bind="day.date | date:'d'" ng-class="{'q-calendar-today': day.isToday, 'q-calendar-other-month': day.isOtherMonth, 'q-calendar-selected': day.isSelected}" ng-click='setDate(day.date)'></td>
+                        <td ng-repeat='day in week' ng-class="{'q-calendar-today': day.isToday, 'q-calendar-other-month': day.isOtherMonth, 'q-calendar-selected': day.isSelected}" ng-click='setDate(day.date)'><span ng-bind="day.date | date:'d'"></span></td>
                       </tr>
                     </tbody>
                   </table>

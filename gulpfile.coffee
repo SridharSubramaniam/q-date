@@ -8,36 +8,50 @@ coffee = require("gulp-coffee")
 uglify = require("gulp-uglify")
 minifyCSS = require("gulp-minify-css")
 ngmin = require("gulp-ngmin")
-less = require('gulp-less')
+sass = require("gulp-ruby-sass")
+rename = require("gulp-rename")
+notify = require("gulp-notify")
 
 gulp.task "scripts", ->
-  compiled = gulp.src(["src/q_date_init.coffee", "src/**/*.{coffee,js}"])
+  compiled = gulp.src(["src/js/q_date_init.coffee", "src/js/**/*.{coffee,js}"])
     .pipe(gulpif(/[.]coffee$/,
       coffee({bare:true})
+      .on('error', notify.onError((error) ->
+        return "Coffee Compilation Error: " + error.message;
+      ))
       .on('error', gutil.log)
     ))
     .pipe(ngmin())
   compiled
-    .pipe(concat("src.js"))
+    .pipe(concat("qdate.js"))
     .pipe(gulp.dest("dist"))
   compiled
     .pipe(uglify())
-    .pipe(concat("src.min.js"))
+    .pipe(concat("qdate.min.js"))
     .pipe(gulp.dest("dist"))
 
 gulp.task "styles", ->
-  compiled = gulp.src("src/**/*.{less,css}")
-    .pipe(gulpif(/[.]less$/,
-      less()
-      .on('error', gutil.log)
-    ))
+  compiled = gulp.src("src/css/*.scss")
+    .pipe(sass({
+        sourcemap: false,
+        unixNewlines: true,
+        style: 'nested',
+        debugInfo: false,
+        quiet: false,
+        lineNumbers: true,
+        bundleExec: true
+      })
+      .on('error', gutil.log))
+      .on('error', notify.onError((error) ->
+        return "SCSS Compilation Error: " + error.message;
+      ))
   compiled
-    .pipe(concat("style.css"))
+    .pipe(rename({prefix: "qdate-"}))
     .pipe(gulp.dest("dist"))
 
   compiled
     .pipe(minifyCSS())
-    .pipe(concat("style.min.css"))
+    .pipe(rename({extname: ".min.js"}))
     .pipe(gulp.dest("dist"))
 
 gulp.task "clean", ->
@@ -45,7 +59,7 @@ gulp.task "clean", ->
     .pipe(clean({force: true}))
 
 gulp.task 'watch', ->
-  gulp.watch('src/*.*', ['scripts', 'styles'])
+  gulp.watch('src/**/*.*', ['scripts', 'styles'])
 
 gulp.task "compile", ["clean"], ->
   gulp.start("scripts", "styles")
