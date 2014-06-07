@@ -53,6 +53,12 @@ $other-month-cell-bg-color: $disabled-bg-color !default;
 $other-month-cell-font-weight: normal !default;
 $other-month-cell-hover-bg-color: darken($other-month-cell-bg-color, 10%) !default;
 
+// Disabled date cell
+$disabled-cell-color: $disabled-text-color !default;
+$disabled-cell-bg-color: $disabled-bg-color !default;
+$disabled-cell-font-weight: normal !default;
+$disabled-cell-hover-bg-color: $disabled-cell-bg-color !default;
+
 // Today date cell
 $today-cell-color: $cell-color !default;
 $today-cell-bg-color: $cell-bg-color !default;

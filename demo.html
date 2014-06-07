@@ -30,8 +30,11 @@
     <script type='text/javascript'>
       var app = angular.module("DemoApp", ["q-date"]);
       app.controller("DemoCtrl", function($scope) {
-        $scope.theme = 'metro'
+        $scope.theme = 'basic'
         $scope.selectedDate = new Date(2014, 5, 15, 17, 30);
+        $scope.noWeekends = function(d) {
+          return ((d.getDay() > 0) && (d.getDay() < 6));
+        };
         $scope.setToToday = function() {
           $scope.selectedDate = new Date();
         }

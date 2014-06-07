@@ -87,6 +87,7 @@ td.q-calendar-selected {
     span { border-color: darken($selected-cell-hover-inner-border-color, 10%); }
   }
 }
+
 td.q-calendar-today {
   color: $today-cell-color;
   background-color: $today-cell-bg-color;
@@ -109,5 +110,18 @@ td.q-calendar-today {
       background-color: darken($today-cell-bg-color, 10%);
       span { border-color: darken($selected-cell-bg-color, 10%); }
     }
+  }
+}
+td.q-calendar-disabled {
+  cursor: default;
+  color: $disabled-cell-color;
+  background-color: $disabled-cell-bg-color;
+  font-weight: $disabled-cell-font-weight;
+  span {
+    border: 1px solid $disabled-cell-bg-color;
+  }
+  &:hover {
+    background-color: $disabled-cell-hover-bg-color;
+    span { border-color: $disabled-cell-hover-bg-color; }
   }
 }

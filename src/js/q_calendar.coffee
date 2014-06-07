@@ -3,6 +3,9 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
     restrict: "EA"
     replace: true
     require: '^ngModel'
+    scope: {
+      dateFilter: '=?'
+    }
     link: (scope, elem, attrs, modelCtrl) ->
 
       init = ->
@@ -52,6 +55,7 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
           scope.monthDate.setFullYear(scope.monthDate.getFullYear() - 1)
           refreshView()
         scope.setDate = (d) ->
+          return if (typeof(scope.dateFilter) == 'function') && !scope.dateFilter(d)
           modelCtrl.$setViewValue(d)
           if modelCtrl.$viewValue && !qDateUtil.datesAreEqualToMonth(modelCtrl.$viewValue, scope.monthDate)
             setMonthDate()
@@ -73,8 +77,7 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
             weeks[row].push({
               date: d
               isSelected: selected
-              isDisabled: false
-              # disabled: if (typeof(scope.dateFilter) == 'function') then !scope.dateFilter(d) else false
+              isDisabled: if (typeof(scope.dateFilter) == 'function') then !scope.dateFilter(d) else false
               isOtherMonth: d.getMonth() != scope.monthDate.getMonth()
               isToday: today
             })
@@ -100,7 +103,7 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
                     </thead>
                     <tbody>
                       <tr ng-repeat='week in weeks'>
-                        <td ng-repeat='day in week' ng-class="{'q-calendar-today': day.isToday, 'q-calendar-other-month': day.isOtherMonth, 'q-calendar-selected': day.isSelected}" ng-click='setDate(day.date)'><span ng-bind="day.date | date:'d'"></span></td>
+                        <td ng-repeat='day in week' ng-class="{'q-calendar-today': day.isToday, 'q-calendar-other-month': day.isOtherMonth, 'q-calendar-selected': day.isSelected, 'q-calendar-disabled': day.isDisabled}" ng-click='setDate(day.date)'><span ng-bind="day.date | date:'d'"></span></td>
                       </tr>
                     </tbody>
                   </table>

@@ -157,6 +157,9 @@ describe "q-calendar", ->
         it 'switches the month to March', ->
           expect(cal.getTitle()).toEqual("March 2014")
 
+        it 'updates the date model on the scope', ->
+          expect(scope.myDate.getMonth()).toEqual(2) # 0-indexed months
+
       describe 'And the selected date is changed to July 1 outside the directive', ->
         beforeEach ->
           scope.myDate = new Date(2014, 6, 1)
@@ -183,3 +186,36 @@ describe "q-calendar", ->
 
       it 'shows the 1st on the first thursday', ->
         expect(cal.getDateCell(0, 4).text()).toEqual("1")
+
+  describe 'a calendar that has a date filter that disables weekends', ->
+    beforeEach ->
+      scope.myDate = new Date(2014, 4, 1)
+      scope.noWeekends = (d) -> d.getDay() > 0 && d.getDay() < 6
+      element = $compile("<div data-q-calendar ng-model='myDate' date-filter='noWeekends'></div>")(scope)
+      scope.$digest()
+      cal = new QCalendarInterface(element)
+
+    it 'adds a disabled class to all weekend table cells', ->
+      thur1 = cal.getDateCell(0, 4)
+      sat1 = cal.getDateCell(0, 6)
+      sun1 = cal.getDateCell(1, 0)
+      mon1 = cal.getDateCell(1, 1)
+      sat2 = cal.getDateCell(1, 6)
+
+      for td in [sat1, sun1, sat2]
+        expect($(td).hasClass('q-calendar-disabled')).toBeTruthy()
+      for td in [thur1, mon1]
+        expect($(td).hasClass('q-calendar-disabled')).toBeFalsy()
+
+    describe 'and a weekend cell is clicked', ->
+      beforeEach ->
+        cal.clickCalendarCell(0, 6)
+
+      it 'does not update the model', ->
+        expect(scope.myDate.getDay()).not.toEqual(6)
+        expect(scope.myDate.getMonth()).toEqual(4)
+        expect(scope.myDate.getDate()).toEqual(1)
+
+      it 'maintains the same selected cell', ->
+        expect(cal.getDateCell(0, 6).hasClass('q-calendar-selected')).toBeFalsy()
+        expect(cal.getDateCell(0, 4).hasClass('q-calendar-selected')).toBeTruthy()
