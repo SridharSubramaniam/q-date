@@ -13,26 +13,26 @@ rename = require("gulp-rename")
 notify = require("gulp-notify")
 
 gulp.task "scripts", ->
-  compiled = gulp.src(["src/js/q_date_init.coffee", "src/js/**/*.{coffee,js}"])
-    .pipe(gulpif(/[.]coffee$/,
+  coffeeFiles = gulp.src(["src/js/q_date_init.coffee", "src/js/**/*.coffee"])
+    .pipe(
       coffee({bare:true})
-      .on('error', notify.onError((error) ->
-        return "Coffee Compilation Error: " + error.message;
-      ))
-      .on('error', gutil.log)
-    ))
+        .on('error', notify.onError((error) ->
+          "Coffee Compilation Error: #{error.message}"
+        ))
+        .on('error', gutil.log)
+    )
     .pipe(ngmin())
 
-  compiled
+  coffeeFiles
     .pipe(concat("qdate.js"))
     .pipe(gulp.dest("dist"))
-  compiled
+  coffeeFiles
     .pipe(uglify())
     .pipe(concat("qdate.min.js"))
     .pipe(gulp.dest("dist"))
 
 gulp.task "styles", ->
-  compiled = gulp.src("src/css/*.scss")
+  sassFiles = gulp.src("src/css/*.scss")
     .pipe(sass({
         sourcemap: false,
         unixNewlines: true,
@@ -46,13 +46,13 @@ gulp.task "styles", ->
       .on('error', notify.onError((error) ->
         return "SCSS Compilation Error: " + error.message;
       ))
-  compiled
+  sassFiles
     .pipe(rename({prefix: "qdate-"}))
     .pipe(gulp.dest("dist"))
 
-  compiled
+  sassFiles
     .pipe(minifyCSS())
-    .pipe(rename({extname: ".min.js"}))
+    .pipe(rename({extname: ".min.css"}))
     .pipe(gulp.dest("dist"))
 
 gulp.task "clean", ->
