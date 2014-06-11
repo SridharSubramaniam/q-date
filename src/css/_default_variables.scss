@@ -12,8 +12,8 @@ $title-bar-text-color: $primary-text-color !default;
 $title-bar-padding: 5px 0px !default;
 
 // Calendar Title
-$title-font-size: 1.1em !default;
-$title-padding: 3px 0 !default;
+$title-font-size: $font-size !default;
+$title-padding: 5px 0 2px !default;
 
 // Next, Prev Arrow Buttons
 $arrow-font-size: 1.1em !default;
