@@ -15,8 +15,28 @@ angular.module("q-date").factory "qDateUtil", ->
   isDateObject: (d) ->
     d instanceof Date
 
+  todayStart: ->
+    d = new Date()
+    d.setHours(0)
+    d.setMinutes(0)
+    d.setSeconds(0)
+    d.setMilliseconds(0)
+    d
+
   incrementMonth: (d, delta) ->
     nd = new Date(d)
     m = nd.getMonth()
     nd.setMonth(m + delta)
     nd
+
+  getHoursMinutes: (d, useAmPm) ->
+    unless @isDateObject(d)
+      throw 'Not a date object' 
+    h = d.getHours()
+    m = d.getMinutes()
+    if useAmPm
+      ampm = if h < 12 then 'am' else 'pm'
+      h = (h % 12) || 12
+      [h, m, ampm]
+    else
+      [h, m]

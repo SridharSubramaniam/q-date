@@ -17,15 +17,23 @@
       </p>
       <div data-q-calendar data-ng-model='selectedDate'></div>
       <br>
+      <br>
+      <br>
+      <div data-q-timepicker data-ng-model='selectedDate'></div>
       <p>
         <strong>Date Selected:</strong> {{selectedDate | date:'medium'}}
       </p>
       <p>
         <button ng-click='setToToday()'>Set to Today</button>
         <button ng-click='clear()'>Clear</button>
+        <button ng-click='addMinutes(60)'>Add 1 hour</button>
+        <button ng-click='addMinutes(5)'>Add 5 minutes</button>
+        <button ng-click='setMinutesTo(10)'>Set to 10 after</button>
       </p>
     </div>
+    <script type="text/javascript" src="vendor/bower/jquery/jquery.js"></script>
     <script type="text/javascript" src="vendor/bower/angular/angular.js"></script>
+    <script type="text/javascript" src="vendor/bower/moment/moment.js"></script>
     <script type="text/javascript" src="dist/qdate.js"></script>
     <script type='text/javascript'>
       var app = angular.module("DemoApp", ["q-date"]);
@@ -40,7 +48,17 @@
         }
         $scope.clear = function() {
           $scope.selectedDate = null;
-        }
+        };
+        $scope.addMinutes = function(minutes) {
+          if ($scope.selectedDate) {
+            $scope.selectedDate = moment($scope.selectedDate).add('minutes', minutes).toDate()
+          }
+        };
+        $scope.setMinutesTo = function(min) {
+          if ($scope.selectedDate) {
+            $scope.selectedDate = new Date($scope.selectedDate.setMinutes(min))
+          }
+        };
       });
     </script>
   </body>

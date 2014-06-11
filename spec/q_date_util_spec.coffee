@@ -46,3 +46,15 @@ describe "qDateUtil", ->
       console.log r
       expect(r.getMonth()).toEqual(1)
       expect(r.getDate()).toEqual(28)
+
+  describe 'getHoursMinutes()', ->
+    it 'works with 24-hour format', ->
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 17, 22), false)).toEqual([17, 22])
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 3, 0), false)).toEqual([3, 0])
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 23, 59), false)).toEqual([23, 59])
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 0, 0), false)).toEqual([0, 0])
+    it 'works with 12-hour format', ->
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 17, 22), true)).toEqual([5, 22, 'pm'])
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 3, 0), true)).toEqual([3, 0, 'am'])
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 23, 59), true)).toEqual([11, 59, 'pm'])
+      expect(qDateUtil.getHoursMinutes(new Date(2014, 6, 15, 0, 0), true)).toEqual([12, 0, 'am'])

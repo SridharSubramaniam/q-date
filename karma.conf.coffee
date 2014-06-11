@@ -16,6 +16,7 @@ module.exports = (config) ->
     reporters: ['progress', 'osx']
     files: [
       "vendor/bower/jquery/jquery.js"
+      "vendor/bower/lodash/dist/lodash.js"
       "vendor/bower/angular/angular.js"
       "vendor/bower/angular-mocks/angular-mocks.js"
       "vendor/browserTrigger.js"
