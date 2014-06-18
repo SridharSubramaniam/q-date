@@ -12,8 +12,10 @@ sass = require("gulp-ruby-sass")
 rename = require("gulp-rename")
 notify = require("gulp-notify")
 
+packageFileName = 'qdate'
+
 gulp.task "scripts", ->
-  coffeeFiles = gulp.src(["src/js/q_date_init.coffee", "src/js/**/*.coffee"])
+  gulp.src(["src/js/q_date_init.coffee", "src/js/**/*.coffee"])
     .pipe(
       coffee({bare:true})
         .on('error', notify.onError((error) ->
@@ -22,13 +24,10 @@ gulp.task "scripts", ->
         .on('error', gutil.log)
     )
     .pipe(ngmin())
-
-  coffeeFiles
-    .pipe(concat("qdate.js"))
+    .pipe(concat("#{packageFileName}.js"))
     .pipe(gulp.dest("dist"))
-  coffeeFiles
     .pipe(uglify())
-    .pipe(concat("qdate.min.js"))
+    .pipe(concat("#{packageFileName}.min.js"))
     .pipe(gulp.dest("dist"))
 
 gulp.task "styles", ->
@@ -47,7 +46,7 @@ gulp.task "styles", ->
         return "SCSS Compilation Error: " + error.message;
       ))
   sassFiles
-    .pipe(rename({prefix: "qdate-"}))
+    .pipe(rename({prefix: "#{packageFileName}-"}))
     .pipe(gulp.dest("dist"))
 
   sassFiles
