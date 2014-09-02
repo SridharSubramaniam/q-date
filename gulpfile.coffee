@@ -43,7 +43,7 @@ gulp.task "styles", ->
       })
       .on('error', gutil.log))
       .on('error', notify.onError((error) ->
-        return "SCSS Compilation Error: " + error.message;
+        return "SCSS Compilation Error: " + error.message
       ))
   sassFiles
     .pipe(rename({prefix: "#{packageFileName}-"}))

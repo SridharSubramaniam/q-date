@@ -16,7 +16,8 @@
     "screenshot.png"
   ],
   "dependencies": {
-    "angular": "~1.2.18"
+    "angular": "~1.2.18",
+    "angular-dateparser": "~1.0.9"
   },
   "devDependencies": {
     "jquery": "~1.9.0",

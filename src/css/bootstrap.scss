@@ -9,12 +9,26 @@ $other-month-cell-bg-color: #fff;
 $disabled-cell-bg-color: #fff;
 $selected-cell-color: #fff;
 $selected-cell-inner-border-color: $bootstrap-blue;
+$popup-padding: 0;
+$popup-bg: #fafafa;
+$popup-border: solid 1px #ddd;
+
 
 @import "default_variables";
 @import "calendar";
+@import "popup";
 
 .q-calendar {
   border-radius: 5px;
+}
+// Inside Popup
+.q-datepicker-popup {
+  box-shadow: 0px 10px 30px rgba(25, 25, 25, 0.92);
+  border-radius: 3px;
+  .q-calendar {
+    padding-top: 15px;
+    border: none;
+  }
 }
 td.q-calendar-selected {
   span {
@@ -35,3 +49,4 @@ td.q-calendar-today.q-calendar-selected {
     background-color: #fff;
   }
 }
+

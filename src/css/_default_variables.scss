@@ -64,3 +64,8 @@ $today-cell-color: $cell-color !default;
 $today-cell-bg-color: $cell-bg-color !default;
 $today-cell-font-weight: bold !default;
 $today-cell-hover-bg-color: darken($today-cell-bg-color, 10%);
+
+// Popup
+$popup-bg-color: #fff !default;
+$popup-padding: 10px !default;
+$popup-border: solid 1px $light-gray !default;

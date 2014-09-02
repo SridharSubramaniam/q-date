@@ -19,6 +19,7 @@ module.exports = (config) ->
       "vendor/bower/lodash/dist/lodash.js"
       "vendor/bower/angular/angular.js"
       "vendor/bower/angular-mocks/angular-mocks.js"
+      "vendor/bower/angular-dateparser/dist/angular-dateparser.js"
       "vendor/browserTrigger.js"
       "src/js/q_date_init.coffee"
       "src/js/**/*.coffee"

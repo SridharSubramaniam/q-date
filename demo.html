@@ -6,40 +6,65 @@
   <body>
     <div id='container' data-ng-controller='DemoCtrl'>
       <link rel="stylesheet" type="text/css" ng-href="dist/qdate-{{theme}}.css" media="all" />
-      <p class='theme-form'>
-        <label style='font-weight: bold; font-family:arial;' for='theme'>Theme</label>
-        <br>
+      <link rel="stylesheet" href="demo.css" type="text/css" />
+      <div class='theme-form'>
+        <label style='font-weight: bold; font-family:arial;' for='theme'>Theme:</label>
         <select name='theme' ng-model='theme'>
           <option value='basic'>Basic</option>
           <option value='bootstrap'>Bootstrap</option>
           <option value='metro'>Metro</option>
         </select>
-      </p>
-      <div data-q-calendar data-ng-model='selectedDate'></div>
-      <br>
-      <br>
-      <br>
-      <div data-q-timepicker data-ng-model='selectedDate'></div>
-      <p>
-        <strong>Date Selected:</strong> {{selectedDate | date:'medium'}}
-      </p>
-      <p>
-        <button ng-click='setToToday()'>Set to Today</button>
-        <button ng-click='clear()'>Clear</button>
-        <button ng-click='addMinutes(60)'>Add 1 hour</button>
-        <button ng-click='addMinutes(5)'>Add 5 minutes</button>
-        <button ng-click='setMinutesTo(10)'>Set to 10 after</button>
-      </p>
+      </div>
+      <h2>qDate Examples:</h2>
+      <div class='example'>
+        <h3>Inline Calendar</h3>
+        <div data-q-calendar data-ng-model='date1'></div>
+        <br>
+        <br>
+        <br>
+        <p>
+        <strong>Date Selected: </strong><span ng-bind="date1 | date:'mediumDate'"></span>
+        </p>
+      </div>
+      <div class='example'>
+        <h3>Inline Time Picker</h3>
+        <div data-q-timepicker data-ng-model='date1'></div>
+        <br/>
+        <strong>Time: </strong><span ng-bind="date1 | date:'h:mm a'"></span>
+      </div>
+      <div class='example'>
+        <h3>Datepicker Popup on an Input</h3>
+        <p>
+          <input type='text' ng-model='date2' q-date-picker date-parser='shortDate'/>
+        </p>
+      </div>
+      <div class='example'>
+        <h4>Datepicker Popup on a button</h4>
+        <p>
+          <button ng-model='date3' q-date-picker ng-bind='date3 | date:shortDate'></button>
+        </p>
+      </div>
+      <div class='example'>
+        <h4>Datepicker Popup on a div styled as a button</h4>
+        <p>
+          <div class='button' ng-model='date4' q-date-picker ng-bind='date4 | date:shortDate'></div>
+        </p>
+      </div>
     </div>
-    <script type="text/javascript" src="vendor/bower/jquery/jquery.js"></script>
+    <!-- <script type="text/javascript" src="vendor/bower/jquery/jquery.js"></script> -->
     <script type="text/javascript" src="vendor/bower/angular/angular.js"></script>
     <script type="text/javascript" src="vendor/bower/moment/moment.js"></script>
+    <script type="text/javascript" src="vendor/bower/angular-dateparser/dist/angular-dateparser.js"></script>
+    <script type="text/javascript" src="vendor/bower/angular-dateparser/dateparser.directive.js"></script>
     <script type="text/javascript" src="dist/qdate.js"></script>
     <script type='text/javascript'>
-      var app = angular.module("DemoApp", ["q-date"]);
+      var app = angular.module("DemoApp", ["q-date", "dateParserDirective"]);
       app.controller("DemoCtrl", function($scope) {
         $scope.theme = 'basic'
-        $scope.selectedDate = new Date(2014, 5, 15, 17, 30);
+        $scope.date1 = new Date(2014, 5, 15, 17, 30);
+        $scope.date2 = new Date(2014, 6, 17);
+        $scope.date3 = new Date(2014, 8, 30);
+        $scope.date4 = new Date();
         $scope.noWeekends = function(d) {
           return ((d.getDay() > 0) && (d.getDay() < 6));
         };

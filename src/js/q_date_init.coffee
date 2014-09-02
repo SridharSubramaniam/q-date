@@ -1,4 +1,4 @@
-app = angular.module("q-date", [])
+app = angular.module("q-date", ["dateParser"])
 
 app.provider "qDateDefaults", ->
   {

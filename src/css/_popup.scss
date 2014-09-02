@@ -1,0 +1,31 @@
+.q-datepicker-input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.q-datepicker-popup {
+  border: $popup-border;
+  padding: $popup-padding;
+  position: absolute;
+  display: inline-block;
+  background-color: $popup-bg-color;
+  z-index: 10000;
+
+  &-close {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 110%;
+    cursor: pointer;
+    padding: 4px;
+    &:hover {
+      background-color: $light-gray;
+    }
+    &:after {
+      content: "\d7";
+      position: absolute;
+      top: -2px;
+    }
+  }
+}
