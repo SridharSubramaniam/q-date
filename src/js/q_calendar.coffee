@@ -90,11 +90,11 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
                 <div class='q-calendar'>
                   <table class='q-calendar-month'>
                     <caption>
-                      <span title='Previous Year' class='q-calendar-prev-year' data-ng-click='prevYear()' data-ng-bind-html='translations.prevYear'></span>
-                      <span title='Previous Month' class='q-calendar-prev-month' data-ng-click='prevMonth()' data-ng-bind-html='translations.prevMonth'></span>
+                      <span title='Previous Year' class='q-calendar-prev-year' data-ng-click='prevYear()'></span>
+                      <span title='Previous Month' class='q-calendar-prev-month' data-ng-click='prevMonth()'></span>
                       <span class='q-calendar-title' ng-bind="monthDate | date:'MMMM yyyy'"></span>
-                      <span title='Next Year' class='q-calendar-next-year' data-ng-click='nextYear()' data-ng-bind-html='translations.nextYear'></span>
-                      <span title='Next Month' class='q-calendar-next-month' data-ng-click='nextMonth()' data-ng-bind-html='translations.nextMonth'></span>
+                      <span title='Next Year' class='q-calendar-next-year' data-ng-click='nextYear()'></span>
+                      <span title='Next Month' class='q-calendar-next-month' data-ng-click='nextMonth()'></span>
                     </caption>
                     <thead>
                       <tr>

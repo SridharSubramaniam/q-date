@@ -4,11 +4,7 @@ app.provider "qDateDefaults", ->
   {
     options: {
       translations: {
-        dayAbbreviations: ["Su", "M", "Tu", "W", "Th", "F", "Sa"],
-        nextMonth: "&rsaquo;"
-        prevMonth: "&lsaquo;"
-        nextYear: "&raquo;"
-        prevYear: "&laquo;"
+        dayAbbreviations: ["Su", "M", "Tu", "W", "Th", "F", "Sa"]
       }
     }
       # dateFormat: 'M/d/yyyy'

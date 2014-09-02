@@ -3,6 +3,7 @@
   display: inline-block;
   padding: 5px;
   border: $calendar-border;
+  background-color: $calendar-bg;
 
   &-title {
     display: inline-block;
@@ -22,6 +23,10 @@
   }
   &-next-month, &-next-year { float:right; }
   &-prev-month, &-prev-year { float:left; }
+  &-next-month:before { content: "\203A"; }
+  &-prev-month:before { content: "\2039"; }
+  &-next-year:before { content: "\00bb"; }
+  &-prev-year:before { content: "\00ab"; }
   &-month {
     border-collapse: collapse;
     border-spacing: 0;
