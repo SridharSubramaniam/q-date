@@ -3,14 +3,9 @@ angular.module("q-date").directive "qTimepicker", ['qDateDefaults', 'qDateUtil',
     restrict: "EA"
     replace: true
     require: '^ngModel'
-    scope: {
-      increment: '@'
-    }
+    scope: {}
     link: (scope, elem, attrs, modelCtrl) ->
-      minuteIncrementOptions = [30, 15, 12, 10, 6, 5, 3, 2, 1]
       init = ->
-        if minuteIncrementOptions.indexOf(scope.increment) == -1
-          scope.increment = 10
         setSelectOptions()
         setupParsers()
         setupWatches()
