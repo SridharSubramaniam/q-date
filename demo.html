@@ -31,6 +31,7 @@
         <div data-q-timepicker data-ng-model='date1'></div>
         <br/>
         <strong>Time: </strong><span ng-bind="date1 | date:'h:mm a'"></span>
+        <pre><code>&lt;div data-q-timepicker data-ng-model=&#039;date1&#039;&gt;&lt;/div&gt;</code></pre>
       </div>
       <div class='example'>
         <h3>Datepicker Popup on an Input</h3>
@@ -67,7 +68,7 @@
       var app = angular.module("DemoApp", ["q-date", "dateParserDirective"]);
       app.controller("DemoCtrl", function($scope) {
         $scope.theme = 'basic'
-        $scope.date1 = new Date(2014, 5, 15, 17, 30);
+        $scope.date1 = new Date(2014, 5, 15, 17, 31);
         $scope.date2 = new Date(2014, 6, 17);
         $scope.date3 = new Date(2014, 8, 30);
         $scope.date4 = new Date();
