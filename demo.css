@@ -28,8 +28,7 @@ body {
   color: #fff;
 }
 .example {
-  padding: 20px 0;
-  margin: 20px 0;
+  padding: 10px 0 30px;
   border-bottom: solid 1px #ddd;
 }
 code,pre {

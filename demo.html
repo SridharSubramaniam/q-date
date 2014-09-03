@@ -28,10 +28,17 @@
       </div>
       <div class='example'>
         <h3>Inline Time Picker</h3>
-        <div data-q-timepicker data-ng-model='date1'></div>
+        <q-timepicker ng-model='date1'></q-timepicker>
         <br/>
         <strong>Time: </strong><span ng-bind="date1 | date:'h:mm a'"></span>
-        <pre><code>&lt;div data-q-timepicker data-ng-model=&#039;date1&#039;&gt;&lt;/div&gt;</code></pre>
+        <pre><code>&lt;q-timepicker ng-model=&#039;date1&#039;&gt;&lt;/q-timepicker&gt;</code></pre>
+      </div>
+      <div class='example'>
+        <h3>24 Hour Inline Time Picker</h3>
+        <q-timepicker use-am-pm='false' ng-model='date1'></q-timepicker>
+        <br/>
+        <strong>Time: </strong><span ng-bind="date1 | date:'h:mm a'"></span>
+        <pre><code>&lt;q-timepicker use-am-pm=&#039;false&#039; ng-model=&#039;date1&#039;&gt;&lt;/q-timepicker&gt;</code></pre>
       </div>
       <div class='example'>
         <h3>Datepicker Popup on an Input</h3>
