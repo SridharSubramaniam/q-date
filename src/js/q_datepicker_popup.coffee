@@ -1,4 +1,4 @@
-pickerDirective = ($compile, qDateDefaults, qDateUtil) ->
+pickerDirective = ["$compile", "qDateDefaults", "qDateUtil", ($compile, qDateDefaults, qDateUtil) ->
   {
     restrict: "A"
     require: "^ngModel",
@@ -8,7 +8,7 @@ pickerDirective = ($compile, qDateDefaults, qDateUtil) ->
     }
     link: (scope, elem, attrs, ngModelCtrl) ->
       scope.isOpen = false unless scope.isOpen
-      elem.wrap("<div class='q-datepicker-input-wrapper'></div>")
+      elem.wrap("<div class='q-datepicker-popup-input-wrapper'></div>")
 
       # Popup View Actions
       scope.togglePopup = ->
@@ -20,24 +20,20 @@ pickerDirective = ($compile, qDateDefaults, qDateUtil) ->
       scope.openPopup = ->
         scope.isOpen = true
 
+      topOffset = if qDateDefaults.popupTopOffset then qDateDefaults.popupTopOffset else elem[0].offsetHeight + 5
+      leftOffset = if qDateDefaults.popupTopOffset then qDateDefaults.popupTopOffset else 0
+      style = "top: #{topOffset}px; left: #{leftOffset}px;"
 
       # Append the popup
-      console.log "ATTRS:", attrs
-      tmpl = if attrs.qDateTimePicker?
-          """
-            <div class='q-datepicker-popup' data-ng-show='isOpen'>
-              <div data-foo='{{isOpen}}' class='q-datepicker-popup-close' ng-click='closePopup()'></div>
-              <div data-q-calendar data-ng-model='ngModel'></div>
-              <div data-q-timepicker data-ng-model='ngModel'></div>
-            </div>
-          """
-      else
-          """
-            <div class='q-datepicker-popup' data-ng-show='isOpen'>
-              <div data-foo='{{isOpen}}' class='q-datepicker-popup-close' ng-click='closePopup()'></div>
-              <div data-q-calendar data-ng-model='ngModel'></div>
-            </div>
-          """
+      tmpl = """
+               <div class='q-datepicker-popup' data-ng-show='isOpen' style='#{style}'>
+                 <div class='q-datepicker-popup-close' data-ng-click='closePopup()'></div>
+                 <div data-q-calendar data-ng-model='ngModel'></div>
+             """
+      if attrs.qDatetimepickerPopup?
+        tmpl += "<div data-q-timepicker data-ng-model='ngModel'></div>"
+      tmpl += "</div>"
+
       popupDiv = angular.element(tmpl)
       $popup = $compile(popupDiv)(scope)
       angular.element(elem).after($popup)
@@ -60,7 +56,7 @@ pickerDirective = ($compile, qDateDefaults, qDateUtil) ->
         datepickerClicked = false
 
   }
+]
 
-
-angular.module("q-date").directive "qDatePicker", pickerDirective
-angular.module("q-date").directive "qDateTimePicker", pickerDirective
+angular.module("q-date").directive "qDatepickerPopup", pickerDirective
+angular.module("q-date").directive "qDatetimepickerPopup", pickerDirective

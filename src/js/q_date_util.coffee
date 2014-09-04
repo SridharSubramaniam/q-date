@@ -1,4 +1,4 @@
-angular.module("q-date").factory "qDateUtil", ["$filter", "$dateParser", ($filter, $dateParser) ->
+angular.module("q-date").factory "qDateUtil", ->
   getDaysInMonth: (year, month) ->
     [31, (if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) then 29 else 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month]
 
@@ -40,14 +40,3 @@ angular.module("q-date").factory "qDateUtil", ["$filter", "$dateParser", ($filte
       [h, m, ampm]
     else
       [h, m]
-
-  format: (date, format) ->
-    if !format || !format.length
-      format = "M/d/yy"
-    $filter('date')(date, format)
-
-  parse: (dateStr, format) ->
-    if !format || !format.length
-      format = "M/d/yy"
-    $dateParser(dateStr, format)
-]

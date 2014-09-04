@@ -71,7 +71,7 @@ describe "q-timepicker", ->
           scope.$digest()
       ).toThrow()
 
-  describe 'a timepicker no use-am-pm value set', ->
+  describe 'a timepicker no am-pm value set', ->
     beforeEach ->
       scope.myDate = null
       element = $compile("<div data-q-timepicker ng-model='myDate'></div>")(scope)

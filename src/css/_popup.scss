@@ -1,4 +1,4 @@
-.q-datepicker-input-wrapper {
+.q-datepicker-popup-input-wrapper {
   position: relative;
   display: inline-block;
 }
@@ -6,8 +6,9 @@
   border: $popup-border;
   padding: $popup-padding;
   position: absolute;
-  display: inline-block;
   background-color: $popup-bg-color;
+  top: 22px;
+  left: 0px;
   z-index: 10000;
 
   &-close {

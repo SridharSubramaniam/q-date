@@ -43,29 +43,29 @@
       <div class='example'>
         <h3>Datepicker Popup on an Input</h3>
         <p>
-          <input type='text' ng-model='date2' q-date-picker date-parser='shortDate'/>
+          <input type='text' ng-model='date2' q-datepicker-popup date-parser='shortDate'/>
         </p>
       </div>
       <div class='example'>
         <h4>Datepicker Popup on a button</h4>
         <p>
-          <button ng-model='date3' q-date-picker ng-bind='date3 | date:shortDate'></button>
+          <button ng-model='date3' q-datepicker-popup ng-bind="date3 | date:'mediumDate'"></button>
         </p>
       </div>
       <div class='example'>
         <h4>Datepicker Popup on a div styled as a button</h4>
         <p>
-          <div class='button' ng-model='date4' q-date-picker ng-bind='date4 | date:shortDate'></div>
+          <div class='button' ng-model='date4' q-datepicker-popup ng-bind="date4 | date:'mediumDate'"></div>
         </p>
       </div>
       <div class='example'>
         <h3>Date/Time Picker Popup on an Input</h3>
         <p>
-          <input type='text' ng-model='date5' q-date-time-picker date-parser='short'/>
+          <input type='text' ng-model='date5' q-datetimepicker-popup date-parser='short'/>
         </p>
       </div>
     </div>
-    <!-- <script type="text/javascript" src="vendor/bower/jquery/jquery.js"></script> -->
+    <script type="text/javascript" src="vendor/bower/jquery/jquery.js"></script>
     <script type="text/javascript" src="vendor/bower/angular/angular.js"></script>
     <script type="text/javascript" src="vendor/bower/moment/moment.js"></script>
     <script type="text/javascript" src="vendor/bower/angular-dateparser/dist/angular-dateparser.js"></script>

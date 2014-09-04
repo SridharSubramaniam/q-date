@@ -12,10 +12,6 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
         setupParsers()
         setupViewActions()
         scope.translations = qDateDefaults.translations
-        # scope.$watch(attrs.ngModel, ->
-        #   setMonthDate("watch")
-        #   refreshView()
-        # )
         for key, value of scope.translations
           if typeof value == "string"
             scope.translations[key] = $sce.trustAsHtml(value)
