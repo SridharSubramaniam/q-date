@@ -1,37 +1,4 @@
-monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
-
-class QCalendarInterface
-  constructor: (element) ->
-    @element = $(element)
-    @scope = element.scope()
-
-  getTitle: =>
-    $(@element).find(".q-calendar-title").text()
-
-  getTodayCell: =>
-    $(@element).find("table tbody .q-calendar-today")
-
-  getDateCell: (w, d) =>
-    weekSelector = if typeof w == "string" then w else "nth-child(#{w + 1})"
-    daySelector = if typeof d == "string" then d else "nth-child(#{d + 1})"
-    $(@element).find("table tbody tr:#{weekSelector} td:#{daySelector}")
-
-  clickNextMonth: =>
-    $(@element).find(".q-calendar-next-month").click()
-
-  clickPrevMonth: =>
-    $(@element).find(".q-calendar-prev-month").click()
-
-  clickNextYear: =>
-    $(@element).find(".q-calendar-next-year").click()
-
-  clickPrevYear: =>
-    $(@element).find(".q-calendar-prev-year").click()
-
-  clickCalendarCell: (w, d) =>
-    $td = @getDateCell(w, d)
-    $td.click()
-
+window.monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
 describe "q-calendar", ->
   element = null
   scope = null
@@ -58,11 +25,12 @@ describe "q-calendar", ->
       scope.myDate = null
       element = $compile("<div data-q-calendar ng-model='myDate'></div>")(scope)
       scope.$digest()
-      cal = new QCalendarInterface(element)
+      cal = new window.QCalendarInterface(element)
 
     describe 'with the model left as null', ->
       it 'defaults to the current month', ->
-        expect(cal.getTitle()).toEqual("#{monthNames[(new Date()).getMonth()]} #{(new Date()).getFullYear()}")
+        expect(cal.getTitle().length).toBeGreaterThan(0)
+        expect(cal.getTitle()).toEqual("#{window.monthNames[(new Date()).getMonth()]} #{(new Date()).getFullYear()}")
 
       it 'has a header row of day abbreviations', ->
         expect($(element).find("table thead tr th:nth-child(1)").text()).toEqual("Su")
@@ -70,6 +38,9 @@ describe "q-calendar", ->
 
       it "adds a special class to today's date", ->
         expect($(element).find("table td.q-calendar-today").length).toEqual(1)
+
+      it 'does not add the selected class to any date', ->
+        expect($(@element).find('q-calendar-selected').length).toEqual(0)
 
     describe 'with the model set to April 1, 2014', ->
       beforeEach ->
