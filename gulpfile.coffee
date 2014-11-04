@@ -2,12 +2,12 @@
 gulp = require("gulp")
 gutil = require("gulp-util")
 gulpif = require('gulp-if')
-clean = require("gulp-clean")
+rimraf = require("gulp-rimraf")
 concat = require("gulp-concat")
 coffee = require("gulp-coffee")
 uglify = require("gulp-uglify")
 minifyCSS = require("gulp-minify-css")
-ngmin = require("gulp-ngmin")
+ngAnnotate = require('gulp-ng-annotate')
 sass = require("gulp-ruby-sass")
 rename = require("gulp-rename")
 notify = require("gulp-notify")
@@ -23,7 +23,7 @@ gulp.task "scripts", ->
         ))
         .on('error', gutil.log)
     )
-    .pipe(ngmin())
+    .pipe(ngAnnotate())
     .pipe(concat("#{packageFileName}.js"))
     .pipe(gulp.dest("dist"))
     .pipe(uglify())
@@ -56,7 +56,7 @@ gulp.task "styles", ->
 
 gulp.task "clean", ->
   return gulp.src(["dist"], {read: false})
-    .pipe(clean({force: true}))
+    .pipe(rimraf({force: true}))
 
 gulp.task 'watch', ->
   gulp.watch('src/**/*.*', ['scripts', 'styles'])
