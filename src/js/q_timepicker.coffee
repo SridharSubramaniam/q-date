@@ -1,4 +1,4 @@
-angular.module("q-date").directive "qTimepicker", ['qDateDefaults', 'qDateUtil', '$filter', (qDateDefaults, qDateUtil, $filter) ->
+angular.module("q-date").directive "qTimepicker", (qDateDefaults, qDateUtil, $filter) ->
   {
     restrict: "EA"
     replace: true
@@ -94,5 +94,3 @@ angular.module("q-date").directive "qTimepicker", ['qDateDefaults', 'qDateUtil',
                 </div>
               """
   }
-]
-

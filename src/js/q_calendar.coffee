@@ -1,4 +1,4 @@
-angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDateUtil', ($sce, qDateDefaults, qDateUtil) ->
+angular.module("q-date").directive "qCalendar", ($sce, qDateDefaults, qDateUtil) ->
   {
     restrict: "EA"
     replace: true
@@ -106,4 +106,3 @@ angular.module("q-date").directive "qCalendar", ['$sce', 'qDateDefaults', 'qDate
                 </div>
               """
   }
-]

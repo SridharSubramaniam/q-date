@@ -6,16 +6,14 @@ pickerDirective = ["$compile", "qDateDefaults", "qDateUtil", ($compile, qDateDef
       ngModel: '='
       isOpen: '=?'
     }
-    compile: (elem, attrs) ->
-      if elem[0].tagName == "INPUT"
-        attrs.ngFocus = "openPopup()"
-      else
-        attrs.ngClick = "togglePopup()"
-
-      return (scope, elem, attrs, ngModelCtrl) ->
+    link: (scope, elem, attrs, ngModelCtrl) ->
+      init = ->
         scope.isOpen = false unless scope.isOpen
-        elem.wrap("<div class='q-datepicker-popup-input-wrapper'></div>")
+        setupViewActions()
+        setupTemplate()
+        setupPopupClosing()
 
+      setupViewActions = ->
         # Popup View Actions
         scope.togglePopup = ->
           scope.isOpen = !scope.isOpen
@@ -25,6 +23,19 @@ pickerDirective = ["$compile", "qDateDefaults", "qDateUtil", ($compile, qDateDef
 
         scope.openPopup = ->
           scope.isOpen = true
+
+        # Setup Events
+        if elem[0].tagName == "INPUT"
+          elem.on 'focus', (e) ->
+            e.preventDefault()
+            scope.openPopup()
+        else
+          elem.on 'click', (e) ->
+            e.preventDefault()
+            scope.togglePopup()
+
+      setupTemplate = ->
+        elem.wrap("<div class='q-datepicker-popup-input-wrapper'></div>")
 
         topOffset = if qDateDefaults.popupTopOffset then qDateDefaults.popupTopOffset else elem[0].offsetHeight + 5
         leftOffset = if qDateDefaults.popupTopOffset then qDateDefaults.popupTopOffset else 0
@@ -44,6 +55,7 @@ pickerDirective = ["$compile", "qDateDefaults", "qDateUtil", ($compile, qDateDef
         $popup = $compile(popupDiv)(scope)
         angular.element(elem).after($popup)
 
+      setupPopupClosing = ->
         # Close on window click except when the popup is clicked
         datepickerClicked = false
         elem.parent().on "click", (e) ->
@@ -53,6 +65,7 @@ pickerDirective = ["$compile", "qDateDefaults", "qDateUtil", ($compile, qDateDef
             scope.$apply -> scope.closePopup()
           datepickerClicked = false
 
+      init()
   }
 ]
 
