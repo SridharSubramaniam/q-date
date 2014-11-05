@@ -4,11 +4,12 @@ qDate is a lean set of date/time directives for Angular.js. It consists of a dat
 
 # Installation:
 
-The lastest version can be downloaded from [here](). You may also install the "q-date" package in [Bower](http://bower.io)
+From the `dist` directory, add 1 js file and 1 css file to your project. Bower support coming soon.
+
+
+Next, add the `"q-date"` module as a dependency in your angular application.
 
 # Usage:
-
-First, add the `"q-date"` module to your application.
 
 **Note:** Each of these directives requires an `ng-model` attribute, which is set to null or a date object.
 
