@@ -27,7 +27,7 @@
     "karma-phantomjs-launcher": "~0.1.4"
   },
   "scripts": {
-    "test": "karma start"
+    "test": "node_modules/karma/bin/karma start karma.conf.coffee"
   },
   "dependencies": {}
 }
