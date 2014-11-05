@@ -2,6 +2,10 @@
 
 qDate is a lean set of date/time directives for Angular.js. It consists of a date picker, a time picker, a date picker popup, and a date/time picker popup.
 
+# Status
+
+This is alpha software and has, so far, only been tested in Chrome.
+
 # Installation:
 
 From the `dist` directory, add 1 js file and 1 css file to your project. Bower support coming soon.
@@ -70,3 +74,18 @@ This will do the same as the datepicker popup, but add a timepicker below it.
 
 * `date-filter`: Pass in the name of a function that will determine whether or not a given date will be enabled in the calendar.
 * `am-pm`: Defaults to AM-PM, but you can use 24-hour mode by setting this option to false.
+
+
+## Contributing
+
+Contributions are welcome. Whenever possible, please include test coverage with your contribution.
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+To get the project running, you'll need [NPM](https://npmjs.org/) and [Bower](http://bower.io/). Run `npm install` and `bower install` to install all dependencies. Then run `gulp` in the project directory to watch and compile changes. And you can run `npm run test` to watch for changes and auto-execute unit tests.
+
+
